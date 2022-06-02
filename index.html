@@ -1,0 +1,127 @@
+<html lang="en"><head>
+
+  <meta charset="UTF-8">
+  <title>VUE ToDo with localStorage</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  
+<style>
+.center {
+	text-align: center;
+}
+
+.green {
+	color: green;
+}
+
+.dtfield {
+	color: grey;
+	font-size: 10px;
+	margin: 2px;
+}
+
+input#add {
+	width: calc(100% - 1px);
+	padding: 5px;
+	font-size: 20px;
+	
+	border: 1px solid darkgreen;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+.panel {
+	display: flex;
+	color: darkgreen;
+	background: white;
+	margin: 2px 0;
+	padding: 3px;
+	width: auto; /* or calc(100% - 5px) */
+	border: 1px solid darkgreen;
+	border-radius: 5px;
+}
+
+.content {
+	width: 100%;
+	word-break: break-all;
+}
+
+.panelbutton {
+	width: 55px;
+	margin-bottom: 3px;
+	text-align: center;
+	color: white;
+	padding: 5px 5px;
+	border: none;
+	border-radius: 2px;
+}
+
+.edit {
+		background-color: #417A45;
+}
+
+.save {
+		background-color: #7C9588;
+}
+
+.delete {
+		background-color: #417A5D;
+}
+
+.actions {
+	text-align: center;
+}
+
+.actionbuttons {
+	margin-top: 2px;
+	margin-bottom: 3px;
+	width: 100%;
+	text-align: center;
+	background-color: #4caf50;
+	color: white;
+	padding: 12px 20px;
+	display: inline-block;
+	border: none;
+	border-radius: 4px;
+	box-shadow: inset 0 1px 3px #ddd;
+}
+
+.actionbuttons:hover {
+	background-color: #30992e;
+}
+
+.textarea {
+  background-color: #42b883;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  resize: both;
+  min-height: 40px;
+  line-height: 20px;
+}
+
+.textarea[contenteditable]:empty::before {
+  content: "Placeholder still possible";
+  color: gray;
+}
+
+input[type="checkbox"] {
+	float: left;
+	margin-right: 10px;
+}
+
+.datetime {
+	color: grey;
+	font-size: 10px;
+}
+</style>
+
+</head>
+
+<body translate="no">
+  <div id="app" data-v-app=""><input id="add" name="add" placeholder="Add a panel..." required=""><button class="actionbuttons" id="addbutton">ADD</button><div class="panel" id="panel_1"><div class="chkbox"><input type="checkbox"><div style="display: none;"> Panel schecked: false</div></div><div class="content"><span>VUE.JS V3x</span><!--v-if--><p class="dtfield">2021. 10. 30. 23:10:45</p></div><div class="actions"><button class="panelbutton edit" title="Edit"><i class="fas fa-edit"></i></button><!--v-if--><button class="panelbutton delete" title="Delete"><i class="fas fa-trash-alt"></i></button></div></div><div class="panel" id="panel_0"><div class="chkbox"><input type="checkbox"><div style="display: none;"> Panel schecked: false</div></div><div class="content"><span>WE WILL BUILD A TO DO APP IN THIS VIDEO</span><!--v-if--><p class="dtfield">2021. 10. 30. 23:10:33</p></div><div class="actions"><button class="panelbutton edit" title="Edit"><i class="fas fa-edit"></i></button><!--v-if--><button class="panelbutton delete" title="Delete"><i class="fas fa-trash-alt"></i></button></div></div><button class="actionbuttons" id="clearbutton">Clear all panels</button><!--v-if--></div>
+  
+  <script src="https://unpkg.com/vue@next"></script>
+  <script id="./app.js">JS DISABLED</script>
+</body></html>
