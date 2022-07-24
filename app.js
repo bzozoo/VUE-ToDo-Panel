@@ -70,3 +70,4 @@ let Panels = {
 };
 
 Vue.createApp(Panels).mount("#app");
+console.log("APP.JS LOADED")
