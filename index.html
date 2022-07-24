@@ -120,8 +120,36 @@ input[type="checkbox"] {
 </head>
 
 <body translate="no">
-  <div id="app" data-v-app=""><input id="add" name="add" placeholder="Add a panel..." required=""><button class="actionbuttons" id="addbutton">ADD</button><div class="panel" id="panel_1"><div class="chkbox"><input type="checkbox"><div style="display: none;"> Panel schecked: false</div></div><div class="content"><span>VUE.JS V3x</span><!--v-if--><p class="dtfield">2021. 10. 30. 23:10:45</p></div><div class="actions"><button class="panelbutton edit" title="Edit"><i class="fas fa-edit"></i></button><!--v-if--><button class="panelbutton delete" title="Delete"><i class="fas fa-trash-alt"></i></button></div></div><div class="panel" id="panel_0"><div class="chkbox"><input type="checkbox"><div style="display: none;"> Panel schecked: false</div></div><div class="content"><span>WE WILL BUILD A TO DO APP IN THIS VIDEO</span><!--v-if--><p class="dtfield">2021. 10. 30. 23:10:33</p></div><div class="actions"><button class="panelbutton edit" title="Edit"><i class="fas fa-edit"></i></button><!--v-if--><button class="panelbutton delete" title="Delete"><i class="fas fa-trash-alt"></i></button></div></div><button class="actionbuttons" id="clearbutton">Clear all panels</button><!--v-if--></div>
-  
+  <div id="app">
+	<input id="add" v-on:keydown.enter="addPanel" v-model="inputValue" name="add" placeholder="Add a panel..." required>
+	<button class="actionbuttons" id="addbutton" v-on:click="addPanel()">ADD</button>
+	<div class="panel" v-bind:id="'panel_' + (panels.length - 1 - panIndex)" v-for="(panel, panIndex) in panels.slice().reverse()">
+		<div class="chkbox">
+			<input type="checkbox" v-model="panel.status"></input>
+			<div v-show="disabled"> Panel schecked: {{ panel.status }} </div>
+		</div>
+		<div class="content">
+			<span v-if="!panel.editable">{{ panel.content }}</span>
+			<span v-bind:id="'pc_' + (panels.length - 1 - panIndex)" class="textarea editable" role="textbox" v-on:keydown.enter="editPanel(panels.length - 1 - panIndex), panel.editable = !panel.editable" v-if="panel.editable" contenteditable>
+				{{ panel.content }}
+
+			</span>
+			<p class="dtfield"> {{ formatedDate(panel.createdAt) }}</p>
+		</div>
+		<div class="actions">
+			<button v-if="!panel.editable" v-on:click="panel.editable = !panel.editable" class="panelbutton edit" title="Edit"><i class="fas fa-edit"></i></button>
+			<button v-if="panel.editable" v-on:click="editPanel(panels.length - 1 - panIndex), panel.editable = !panel.editable" class="panelbutton save" title="Save"><i class="fas fa-save"></i></button>
+			<button v-on:click="deletePanel((panels.length - 1) - panIndex)" class="panelbutton delete" title="Delete"><i class="fas fa-trash-alt"></i></button>
+		</div>
+	</div>
+	<button v-if="(panels.length > 0) && !secureDel" class="actionbuttons" id="clearbutton" @click="secureDel = !secureDel">Clear all panels</button>
+	<div class="center green" v-if="secureDel">
+		Are you sure ???
+		<button class="actionbuttons" id="clearbutton" v-on:click="clearAllPanels(), secureDel = !secureDel">YES</button>
+	<button class="actionbuttons" id="clearbutton" v-on:click="secureDel = !secureDel">NO</button>
+
+	</div>
+</div>
   <script src="https://unpkg.com/vue@next"></script>
   <script src="./app.js"></script>
 </body></html>
